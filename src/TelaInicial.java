@@ -17,12 +17,16 @@ public class TelaInicial extends JFrame implements ActionListener {
 		
 		JLabel label = new JLabel(icon);
 		JLabel labelTexto = new JLabel("Bem vindo ao Dino Fisio!");
-		label.setBounds(40,90,300,300);
-		labelTexto.setBounds(120,250,200,200);
 		JButton botaoBusca = new JButton ("Buscar paciente");
 		JButton botaoIniciar = new JButton("Novo cadastro");
+		JButton botao3 = new JButton("Botao 3");
+		JButton botao4 = new JButton ("Botao 4");
+		label.setBounds(40,90,300,300);
+		labelTexto.setBounds(120,250,200,200);
 		botaoIniciar.setBounds(350,150,150,30);
 		botaoBusca.setBounds(350,190,150,30);
+		botao3.setBounds(350,230,150,30);
+		botao4.setBounds(350,270,150,30);
 		
 		
 		botaoIniciar.addActionListener(this);
@@ -36,6 +40,8 @@ public class TelaInicial extends JFrame implements ActionListener {
 		add(botaoIniciar);
 		add(botaoBusca);
 		add(labelTexto);
+		add(botao3);
+		add(botao4);
 		
 				
 		
