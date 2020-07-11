@@ -7,10 +7,13 @@ public class RodarPrograma {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLogin frame = new TelaLogin();
-					frame.setVisible(true);
-					Conexao conexao = new Conexao();
-					conexao.conecta();
+//					TelaLogin frame = new TelaLogin();
+//					frame.setVisible(true);
+//					Conexao conexao = new Conexao();
+//					conexao.conecta();
+					TelaInicial tela = new TelaInicial();
+					tela.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
