@@ -16,17 +16,27 @@ public class TelaInicial extends JFrame implements ActionListener {
 		
 		
 		JLabel label = new JLabel(icon);
-		JButton botaoIniciar = new JButton("Novo cadastro");
+		JLabel labelTexto = new JLabel("Bem vindo ao Dino Fisio!");
+		label.setBounds(40,90,300,300);
+		labelTexto.setBounds(120,250,200,200);
 		JButton botaoBusca = new JButton ("Buscar paciente");
+		JButton botaoIniciar = new JButton("Novo cadastro");
+		botaoIniciar.setBounds(350,150,150,30);
+		botaoBusca.setBounds(350,190,150,30);
+		
+		
 		botaoIniciar.addActionListener(this);
 		
-		setTitle("Bem vindo ao DinoFisio!");
+		setTitle("Dino Fisio - 0.1");
 		setSize (600,600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLayout(new FlowLayout());
+		setLayout(null);
+		setResizable(false);
 		add(label);
 		add(botaoIniciar);
 		add(botaoBusca);
+		add(labelTexto);
+		
 				
 		
 	}
