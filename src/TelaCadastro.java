@@ -21,6 +21,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.UIManager;
 import java.awt.Font;
 
@@ -39,6 +42,8 @@ public class TelaCadastro extends JFrame {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTextField textField_11;
+	private JTextField textField_2;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -184,18 +189,17 @@ public class TelaCadastro extends JFrame {
 		JLabel lblNewLabel_15 = new JLabel("Complemento:");
 		lblNewLabel_15.setFont(new Font("Arial", Font.PLAIN, 11));
 		
-		JSeparator separator = new JSeparator();
-		
 		JButton btnNewButton = new JButton("Limpar formulario");
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		JButton btnNewButton_1 = new JButton("Enviar cadastro");
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		JButton btnNewButton_2 = new JButton("Voltar");
-		btnNewButton_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		JButton botaoVoltar = new JButton("Voltar");
+		botaoVoltar.setFont(new Font("Arial", Font.PLAIN, 12));
+		botaoVoltar.addActionListener(new EventoVoltar());
 		
-		JLabel lblNewLabel_16 = new JLabel("Queixa principal do paciente:");
+		JLabel lblNewLabel_16 = new JLabel("Outras informa\u00E7\u00F5es");
 		lblNewLabel_16.setFont(new Font("Arial", Font.PLAIN, 11));
 		
 		JFormattedTextField dataNascTextField = new JFormattedTextField();
@@ -203,38 +207,47 @@ public class TelaCadastro extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setToolTipText("Pergunte ao paciente qual a sua principal queixa (o que lhe trouxe aqui)");
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setToolTipText("Anote aqui outras informa\u00E7\u00F5es que considere importantes sobre o paciente ");
+		JLabel lblNewLabel_10_1 = new JLabel("Tipo doc.");
+		lblNewLabel_10_1.setFont(new Font("Arial", Font.PLAIN, 11));
 		
-		JLabel lblNewLabel_17 = new JLabel("Outras informa\u00E7\u00F5es:");
-		lblNewLabel_17.setFont(new Font("Arial", Font.PLAIN, 11));
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel_10_2 = new JLabel("N\u00FAmero documento:");
+		lblNewLabel_10_2.setFont(new Font("Arial", Font.PLAIN, 11));
+		
+		JLabel lblNewLabel_10_1_1 = new JLabel("Tipo doc.");
+		lblNewLabel_10_1_1.setFont(new Font("Arial", Font.PLAIN, 11));
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"CPF", "RG", "Passaporte", "RNE", "Carteira de Motorista"}));
+		
+		JComboBox comboBox_1_1 = new JComboBox();
+		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"CPF", "RG", "Passaporte", "RNE", "Carteira de Motorista"}));
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel_2_1_1 = new JLabel("Outro telefone:");
+		lblNewLabel_2_1_1.setFont(new Font("Arial", Font.PLAIN, 11));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel_17)
-							.addContainerGap(528, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel_16)
-							.addContainerGap(435, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(textArea_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-								.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(btnNewButton_2)
-									.addPreferredGap(ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+									.addComponent(botaoVoltar)
+									.addPreferredGap(ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
 									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
 									.addGap(4))
-								.addComponent(separator, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_5, Alignment.LEADING)
-								.addComponent(textField_3, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addComponent(lblNewLabel_5)
+								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, 321, GroupLayout.PREFERRED_SIZE)
@@ -244,8 +257,8 @@ public class TelaCadastro extends JFrame {
 											.addGap(299)))
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel_14)
-										.addComponent(textField_10, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+										.addComponent(textField_10, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel)
 										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 319, GroupLayout.PREFERRED_SIZE))
@@ -266,11 +279,11 @@ public class TelaCadastro extends JFrame {
 												.addGroup(gl_contentPane.createSequentialGroup()
 													.addPreferredGap(ComponentPlacement.RELATED)
 													.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addComponent(textField_11, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+														.addComponent(textField_11, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
 														.addComponent(lblNewLabel_15))))
 											.addPreferredGap(ComponentPlacement.RELATED))
 										.addComponent(lblNewLabel_1)))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel_3)
 										.addComponent(dataNascTextField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
@@ -283,12 +296,11 @@ public class TelaCadastro extends JFrame {
 										.addComponent(textFieldTelefone, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addComponent(lblNewLabel_10)
-											.addGap(49))
-										.addComponent(numDocTextfield)))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+									.addGap(8))
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblNewLabel_7))
@@ -298,9 +310,9 @@ public class TelaCadastro extends JFrame {
 										.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_2, 0, 80, Short.MAX_VALUE)
+										.addComponent(comboBox_2, 0, 93, Short.MAX_VALUE)
 										.addComponent(lblNewLabel_9)))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -313,8 +325,34 @@ public class TelaCadastro extends JFrame {
 										.addGroup(gl_contentPane.createSequentialGroup()
 											.addComponent(lblNewLabel_12)
 											.addGap(13))
-										.addComponent(comboBox_3, 0, 74, Short.MAX_VALUE))))
-							.addGap(70))))
+										.addComponent(comboBox_3, 0, 85, Short.MAX_VALUE))))
+							.addGap(70))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+							.addGap(62))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_16)
+							.addContainerGap(481, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(numDocTextfield, 153, 153, 153)
+								.addComponent(lblNewLabel_10))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addComponent(lblNewLabel_10_1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel_10_2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_10_1_1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap(61, Short.MAX_VALUE))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -333,13 +371,13 @@ public class TelaCadastro extends JFrame {
 						.addComponent(lblNewLabel_3)
 						.addComponent(lblNewLabel_2)
 						.addComponent(lblNewLabel_2_1)
-						.addComponent(lblNewLabel_10))
+						.addComponent(lblNewLabel_2_1_1))
 					.addGap(2)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(telefoneResTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textFieldTelefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(numDocTextfield, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dataNascTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(dataNascTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_5)
@@ -378,23 +416,41 @@ public class TelaCadastro extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_10)
+						.addComponent(lblNewLabel_10_1)
+						.addComponent(lblNewLabel_10_2)
+						.addComponent(lblNewLabel_10_1_1))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(numDocTextfield, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
 					.addComponent(lblNewLabel_16)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-					.addGap(17)
-					.addComponent(lblNewLabel_17)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_2)
+						.addComponent(botaoVoltar)
 						.addComponent(btnNewButton)
 						.addComponent(btnNewButton_1))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	private class EventoVoltar implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new CertezaAcaoJPanel("voltar");
+			
+			
+		}
+		
+		
 	}
 }
