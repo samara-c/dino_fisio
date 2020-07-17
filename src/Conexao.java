@@ -16,9 +16,9 @@ public class Conexao {
 	public void conecta () throws ClassNotFoundException {
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/projeto_java","root","root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/projeto_java?useTimezone=true&serverTimezone=UTC","root","root");
 			System.out.println("Conectou");
 			
 			 

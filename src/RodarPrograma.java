@@ -9,8 +9,8 @@ public class RodarPrograma {
 				try {
 //					TelaLogin frame = new TelaLogin();
 //					frame.setVisible(true);
-//					Conexao conexao = new Conexao();
-//					conexao.conecta();
+					Conexao conexao = new Conexao();
+					conexao.conecta();
 					TelaInicial tela = new TelaInicial();
 					tela.setVisible(true);
 					
