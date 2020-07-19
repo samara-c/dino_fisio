@@ -44,6 +44,7 @@ public class TelaCadastro extends JFrame {
 	private final JTextField textFieldComplemento;
 	private final JTextField textFieldNumDoc2;
 	private final JTextField textFieldOutroTel;
+	private final JTextField textFieldDataNasc;
 
 	/**
 	 * Launch the application.
@@ -203,8 +204,6 @@ public class TelaCadastro extends JFrame {
 		JLabel lblNewLabel_16 = new JLabel("Outras informa\u00E7\u00F5es");
 		lblNewLabel_16.setFont(new Font("Arial", Font.PLAIN, 11));
 		
-		final JFormattedTextField textFieldDataNasc = new JFormattedTextField();
-		
 		JTextArea textAreaInfo = new JTextArea();
 		textAreaInfo.setToolTipText("Pergunte ao paciente qual a sua principal queixa (o que lhe trouxe aqui)");
 		
@@ -231,6 +230,9 @@ public class TelaCadastro extends JFrame {
 		
 		JLabel lblNewLabel_2_1_1 = new JLabel("Outro telefone:");
 		lblNewLabel_2_1_1.setFont(new Font("Arial", Font.PLAIN, 11));
+		
+		textFieldDataNasc = new JTextField();
+		textFieldDataNasc.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -287,8 +289,8 @@ public class TelaCadastro extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel_3)
-										.addComponent(textFieldDataNasc, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(textFieldDataNasc, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(textFieldTelRes, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblNewLabel_2))
@@ -339,13 +341,10 @@ public class TelaCadastro extends JFrame {
 								.addComponent(textFieldNumDoc1, 153, 153, 153)
 								.addComponent(lblNewLabel_10))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-									.addComponent(lblNewLabel_10_1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_10_1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNewLabel_10_2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textFieldNumDoc2, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))
@@ -377,8 +376,8 @@ public class TelaCadastro extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textFieldTelRes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textFieldTelefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldDataNasc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldOutroTel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldOutroTel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldDataNasc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_5)
@@ -459,24 +458,27 @@ public class TelaCadastro extends JFrame {
 	private class EnviarCadastro implements ActionListener {
 		
 		
-		public boolean checarCadastro () {
+		public boolean checarCadastro () { //checando se os campos estão preenchidos
 			
-			if (textFieldNome.getText().isEmpty()) {
-				System.out.println("esta vazio");
-				return true;
+				if (textFieldNome.getText().isEmpty() || textFieldTelefone.getText().isEmpty() || textFieldTelRes.getText().isEmpty() || textFieldOutroTel.getText().isEmpty()
+						|| textFieldDataNasc.getText().isEmpty() || textFieldEndereco.getText().isEmpty()|| textFieldEndereco.getText().isEmpty() || textFieldNumero.getText().isEmpty() ||
+						textFieldBairro.getText().isEmpty() || textFieldCidade.getText().isEmpty() || textFieldEmail.getText().isEmpty()|| textFieldNumDoc1.getText().isEmpty() ||
+						textFieldNumDoc2.getText().isEmpty())  {
+				return false;
 			}
 			
-			return false;
+			return true;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (textFieldNome.getText().isEmpty() || textFieldTelefone.getText().isEmpty() || textFieldTelRes.getText().isEmpty() || textFieldOutroTel.getText().isEmpty()
-					|| textFieldEndereco.getText().isEmpty())  {
-				System.out.println("esta vazio");
+			
+			if (checarCadastro() == false) {
+				new CertezaAcaoJPanel("voltar");
 			}
 		}
 		
 		
 	}
 }
+
