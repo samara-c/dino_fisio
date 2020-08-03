@@ -31,7 +31,7 @@ public class Conexao {
 		
 	}
 
-	public void inserirValorTabela () {
+	public void inserirValorTabela (String valorSql, String CampoSql) {
 		
 		try {
 			String sql = "INSERT INTO usuario (nome) VALUES ('Samara')";

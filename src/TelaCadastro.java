@@ -45,6 +45,67 @@ public class TelaCadastro extends JFrame {
 	private final JTextField textFieldNumDoc2;
 	private final JTextField textFieldOutroTel;
 	private final JTextField textFieldDataNasc;
+	Conexao con = new Conexao ();
+
+	public JTextField getTextFieldNome() {
+		return textFieldNome;
+	}
+
+	public JTextField getTextFieldTelefone() {
+		return textFieldTelefone;
+	}
+
+	public JTextField getTextFieldTelRes() {
+		return textFieldTelRes;
+	}
+
+	public JTextField getTextFieldEndereco() {
+		return textFieldEndereco;
+	}
+
+	public JTextField getTextFieldNumero() {
+		return textFieldNumero;
+	}
+
+	public JTextField getTextFieldBairro() {
+		return textFieldBairro;
+	}
+
+	public JTextField getTextFieldCidade() {
+		return textFieldCidade;
+	}
+
+	public JTextField getTextFieldNumDoc1() {
+		return textFieldNumDoc1;
+	}
+
+	public JTextField getTextFieldResponsavel() {
+		return textFieldResponsavel;
+	}
+
+	public JTextField getTextFieldEmail() {
+		return textFieldEmail;
+	}
+
+	public JTextField getTextFieldObs() {
+		return textFieldObs;
+	}
+
+	public JTextField getTextFieldComplemento() {
+		return textFieldComplemento;
+	}
+
+	public JTextField getTextFieldNumDoc2() {
+		return textFieldNumDoc2;
+	}
+
+	public JTextField getTextFieldOutroTel() {
+		return textFieldOutroTel;
+	}
+
+	public JTextField getTextFieldDataNasc() {
+		return textFieldDataNasc;
+	}
 
 	/**
 	 * Launch the application.
@@ -458,7 +519,9 @@ public class TelaCadastro extends JFrame {
 	private class EnviarCadastro implements ActionListener {
 		
 		
-		public boolean checarCadastro () { //checando se os campos estão preenchidos
+		
+		
+		boolean checarCadastro () { //checando se os campos estão preenchidos
 			
 				if (textFieldNome.getText().isEmpty() || textFieldTelefone.getText().isEmpty() || textFieldTelRes.getText().isEmpty() || textFieldOutroTel.getText().isEmpty()
 						|| textFieldDataNasc.getText().isEmpty() || textFieldEndereco.getText().isEmpty()|| textFieldEndereco.getText().isEmpty() || textFieldNumero.getText().isEmpty() ||
@@ -469,12 +532,33 @@ public class TelaCadastro extends JFrame {
 			
 			return true;
 		}
+		
+		
+		void enviaCadastro () {
+			
+			
+			int i = 0;
+			String campos [] =  {textFieldNome.getText(), textFieldTelRes.getText(), textFieldTelefone.getText(), textFieldDataNasc.getText()};
+			String nomeCampos [] = { "nome", "telRes", "telefone", "dataNasc"};
+			
+			while (i < campos.length) {
+				
+				String valorSql = campos [i];
+				String campoSql = nomeCampos [i];
+				con.inserirValorTabela(valorSql, campoSql);
+				
+				
+				
+				
+			}
+			
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			if (checarCadastro() == false) {
-				new CertezaAcaoJPanel("voltar");
+				new CertezaAcaoJPanel("envioVazio");
 			}
 		}
 		
