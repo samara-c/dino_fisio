@@ -31,12 +31,14 @@ public class Conexao {
 		
 	}
 
-	public void inserirValorTabela (String valorSql, String CampoSql) {
+	public void inserirValorTabela (String valorSql, String campoSql) {
+		
 		
 		try {
-			String sql = "INSERT INTO usuario (nome) VALUES ('Samara')";
 			stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_UPDATABLE);
+	                ResultSet.CONCUR_UPDATABLE);
+			String sql = "INSERT INTO user ("+campoSql+") VALUES ('"+valorSql+"')";
+			
 			stmt.executeUpdate(sql);
 			
 		} catch (SQLException e) {

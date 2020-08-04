@@ -539,14 +539,18 @@ public class TelaCadastro extends JFrame {
 			
 			int i = 0;
 			String campos [] =  {textFieldNome.getText(), textFieldTelRes.getText(), textFieldTelefone.getText(), textFieldDataNasc.getText()};
-			String nomeCampos [] = { "nome", "telRes", "telefone", "dataNasc"};
+			String nomeCamposSql [] = { "nome", "telres", "telefone", "datanasc"}; // campos do sql 
+			System.out.println(campos);
 			
 			while (i < campos.length) {
 				
 				String valorSql = campos [i];
-				String campoSql = nomeCampos [i];
+				System.out.println(valorSql);
+				String campoSql = nomeCamposSql [i];
+				System.out.println(campoSql);
 				con.inserirValorTabela(valorSql, campoSql);
 				
+				i+=1;
 				
 				
 				
@@ -559,6 +563,10 @@ public class TelaCadastro extends JFrame {
 			
 			if (checarCadastro() == false) {
 				new CertezaAcaoJPanel("envioVazio");
+			}
+			else {
+				enviaCadastro();
+				System.out.println("Valores inseridos na tabela com sucesso");
 			}
 		}
 		
