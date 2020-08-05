@@ -37,7 +37,7 @@ public class Conexao {
 		try {
 			stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                ResultSet.CONCUR_UPDATABLE);
-			String sql = "INSERT INTO user ("+campoSql+") VALUES ('"+valorSql+"')";
+			String sql = "INSERT INTO user ("+campoSql+") VALUES ("+valorSql+")";
 			
 			stmt.executeUpdate(sql);
 			

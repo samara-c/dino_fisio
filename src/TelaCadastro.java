@@ -253,6 +253,7 @@ public class TelaCadastro extends JFrame {
 		
 		JButton btnLimparForm = new JButton("Limpar formulario");
 		btnLimparForm.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnLimparForm.addActionListener(new LimpaFormulario());
 		
 		JButton botaoEnviarCadastro = new JButton("Enviar cadastro");
 		botaoEnviarCadastro.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -518,17 +519,20 @@ public class TelaCadastro extends JFrame {
 	
 	private class EnviarCadastro implements ActionListener {
 		
+		String valorFinal = "";
+		String campoFinal = "";
+		
 		
 		
 		
 		boolean checarCadastro () { //checando se os campos estão preenchidos
 			
-				if (textFieldNome.getText().isEmpty() || textFieldTelefone.getText().isEmpty() || textFieldTelRes.getText().isEmpty() || textFieldOutroTel.getText().isEmpty()
-						|| textFieldDataNasc.getText().isEmpty() || textFieldEndereco.getText().isEmpty()|| textFieldEndereco.getText().isEmpty() || textFieldNumero.getText().isEmpty() ||
-						textFieldBairro.getText().isEmpty() || textFieldCidade.getText().isEmpty() || textFieldEmail.getText().isEmpty()|| textFieldNumDoc1.getText().isEmpty() ||
-						textFieldNumDoc2.getText().isEmpty())  {
-				return false;
-			}
+//				if (textFieldNome.getText().isEmpty() || textFieldTelefone.getText().isEmpty() || textFieldTelRes.getText().isEmpty() || textFieldOutroTel.getText().isEmpty()
+//						|| textFieldDataNasc.getText().isEmpty() || textFieldEndereco.getText().isEmpty()|| textFieldEndereco.getText().isEmpty() || textFieldNumero.getText().isEmpty() ||
+//						textFieldBairro.getText().isEmpty() || textFieldCidade.getText().isEmpty() || textFieldEmail.getText().isEmpty()|| textFieldNumDoc1.getText().isEmpty() ||
+//						textFieldNumDoc2.getText().isEmpty())  {
+//				return false;
+//			}
 			
 			return true;
 		}
@@ -538,25 +542,29 @@ public class TelaCadastro extends JFrame {
 			
 			
 			int i = 0;
-			String campos [] =  {textFieldNome.getText(), textFieldTelRes.getText(), textFieldTelefone.getText(), textFieldDataNasc.getText()};
-			String nomeCamposSql [] = { "nome", "telres", "telefone", "datanasc"}; // campos do sql 
-			System.out.println(campos);
+			Conexao con = new Conexao ();
+			String valoresASeremEnviados=  "'" + textFieldNome.getText() +
+					 " ' ,  " + textFieldTelRes.getText() +
+					 " , ' " + textFieldTelefone.getText() +
+					 " ' , ' " + textFieldDataNasc.getText() + " ' ";
+			String camposOndeValoresSeraoInseridos =  "nome , telres , telefone,  datanasc"; // campos do sql 
+			con.inserirValorTabela(valoresASeremEnviados, camposOndeValoresSeraoInseridos);
 			
-			while (i < campos.length) {
+			
+			
+			
+			
+		
 				
-				String valorSql = campos [i];
-				System.out.println(valorSql);
-				String campoSql = nomeCamposSql [i];
-				System.out.println(campoSql);
-				con.inserirValorTabela(valorSql, campoSql);
-				
-				i+=1;
+//				System.out.println(campoSql);
 				
 				
 				
 			}
 			
-		}
+			
+			
+		
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -568,6 +576,33 @@ public class TelaCadastro extends JFrame {
 				enviaCadastro();
 				System.out.println("Valores inseridos na tabela com sucesso");
 			}
+		}
+		
+		
+	}
+	
+	private class LimpaFormulario implements ActionListener  {
+		
+		public void setarCamposParaEspaços () {
+			
+			textFieldNome.setText (" ");
+			textFieldTelefone.setText (" ");
+			textFieldTelRes.setText (" ");
+			
+			
+			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+			setarCamposParaEspaços();
+			System.out.println("Campos apagados com sucesso");
+			} catch (Exception excep) {
+				excep.printStackTrace();
+			}
+			
+			
 		}
 		
 		
